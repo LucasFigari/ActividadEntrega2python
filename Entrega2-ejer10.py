@@ -75,6 +75,48 @@ def promedioDeCadaAlumno(alu):
   
 #------------------------------------------------------------------------------------------------------------
 
+def calcularMax(nombre,prom,maximoprom,maxnombre):
+  """FUNCION QUE COMPARA EL PROMEDIO CON EL MAS ALTO QUE SE TIENE GUARDADO, Y SI ES MAYOR EL ACTUAL, SE ACTUALIZA EL MAXIMOPROM Y MAXNOMBRE"""
+  if (prom > maximoprom):
+    maxnombre = nombre
+    maximoprom = prom
+  return maxnombre,maximoprom
+
+
+#------------------------------------------------------------------------------------------------------------
+
+def calcularMin(nom,prom,min_n,min_pr):
+  """FUNCION QUE COMPARA EL PROMEDIO MINIMO CON EL PROMEDIO ACTUAL Y SI ES MENOR LO REEMPLAZA"""
+  if (prom<min_pr):
+    min_n = nom
+    min_pr = prom
+  return min_n, min_pr
+
+#------------------------------------------------------------------------------------------------------------
+
+def promedioMinimoAlumno(alum):
+  minprom = 9999
+  min_nombre = "zzz"
+  for nom,valor in alum.items():
+    x = sumarnotas(valor['nota1'],valor['nota2'])/2
+    min_nombre, minprom = calcularMin(nom,x,min_nombre,minprom)
+  return min_nombre,minprom
+
+#------------------------------------------------------------------------------------------------------------
+
+def maximoPromedioAlumno(alum):
+  """FUNCION QUE CALCULA CUAL ES EL PROMEDIO MAS ALTO EN EL DICCIONARIO DE ALUMNOS E IMPRIME EL RESULTADO"""
+  max_actual = -1
+  nombre_max = "zzz"
+  for nombre,valor in alum.items():
+    x = sumarnotas(valor['nota1'],valor['nota2'])/2
+    nombre_max, max_actual = calcularMax(nombre,x,max_actual,nombre_max)
+  return nombre_max, max_actual
+
+#------------------------------------------------------------------------------------------------------------
+
+
+
 #SECCIÓN DE FUNCIONES: FINAL
 
 nombres2 = nombres.lower().replace(",","").replace("'"," ").split()
@@ -86,10 +128,25 @@ for iterador in range(0,contador):
 
 
 corroborarAlumno(alumnos) #no es para ningun item en especial, solo para comprobar que se enlazó bien los nombres y notas.
+
+print("-"*50)
 #ITEM B
 print("se imprime a continuación el promedio de cada alummno----")
 promedioDeCadaAlumno(alumnos)
 
+print("-"*50)
 #ITEM C
 print("se imprime a continuación el promedio general del curso----")
 promedioDelCurso(alumnos)
+
+print("-"*50)
+#ITEM D
+print("Se imprime a continuación el alumno con el promedio mas alto de todos")
+maxnombfinal,maxpromedio = maximoPromedioAlumno(alumnos)
+print(f"{maxnombfinal} tiene la nota promedio mas alta con un puntaje de {maxpromedio}")
+
+print("-"*50)
+#ITEM E // EN LA PRACTICA DEL JUEVES NOS DIJERON QUE EN REALIDAD ESTE ITEM SE REFIERE AL PROMEDIO MAS BAJO Y NO A LA NOTA MAS BAJA, POR LO QUE CALCULO EL PROMEDIO MAS BAJO
+print("Se imprime a continuación el alumno con el promedio más bajo de todos")
+minnombfinal,minpromedio = promedioMinimoAlumno(alumnos)
+print(f"{minnombfinal} tiene la nota promedio mas baja con un puntaje de {minpromedio}")
