@@ -19,6 +19,7 @@ notas_2 = [30, 95, 28, 84, 84, 43, 66, 51, 4, 11, 58, 10, 13, 34, 96, 71, 86, 37
 alumnos = {}
 
 # SECCION DE FUNCIONES: COMIENZO
+#------------------------------------------------------------------------------------------------------------
 
 def enlazarAlumnoNota(nom, puntaje1, puntaje2, dic):
   """funcion que agrega al diccionario de alumnos, el nombre como clave, y las notas como diccionario dentro del alumno para tener 2 valores organizados"""
@@ -115,9 +116,10 @@ def maximoPromedioAlumno(alum):
 
 #------------------------------------------------------------------------------------------------------------
 
-
-
 #SECCIÓN DE FUNCIONES: FINAL
+
+
+#                      PROGRAMA PRINCIPAL
 
 nombres2 = nombres.lower().replace(",","").replace("'"," ").split()
 contador = len(nombres2)  #Inicia el for, el cual se repite la misma cantidad que alumnos haya.
