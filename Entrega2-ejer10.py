@@ -59,13 +59,12 @@ def sumarnotas(n1,n2):
 
 #------------------------------------------------------------------------------------------------------------
 
-def promedioDelCurso(alumn,cantalumnos): #el promedio del curso lo voy a calcular en base a esta definicion:El promedio general (GPA) se obtiene dividiendo el número total de calificaciones obtenidas por la cantidad total de horas cursadas.
+def promedioDelCurso(alumn): #el promedio del curso lo voy a calcular en base a esta definicion:El promedio general (GPA) se obtiene dividiendo el número total de calificaciones obtenidas por la cantidad total de horas cursadas.
   """CALCULA EL PROMEDIO GENERAL DEL CURSO"""
   total = 0
-  for iter in range(0,cantalumnos):
-     total = total + sumarnotas(alumn[iter]['nota1'],alumn[iter]['nota2'])
-  prom = total/200  #asumo que la cantidad de horas cursadas son 200hs
-  print(f"el promedio general del curso es de {prom}")
+  for nom,valor in alumn.items():
+    total = total + sumarnotas(valor['nota1'],valor['nota2'])
+  print(f"promedio general del curso: {total/200}") #voy a asumir que el curso duró 200 horas, a modo de ejemplo. No entiendo bien a qué hace referencia el promedio general del curso, por lo que me baso en esa definicion
 
 #------------------------------------------------------------------------------------------------------------
 
@@ -87,8 +86,10 @@ for iterador in range(0,contador):
 
 
 corroborarAlumno(alumnos) #no es para ningun item en especial, solo para comprobar que se enlazó bien los nombres y notas.
-
 #ITEM B
+print("se imprime a continuación el promedio de cada alummno----")
 promedioDeCadaAlumno(alumnos)
 
 #ITEM C
+print("se imprime a continuación el promedio general del curso----")
+promedioDelCurso(alumnos)
